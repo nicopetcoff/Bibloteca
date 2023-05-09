@@ -39,6 +39,5 @@ public class Autor {
 		return libros;
 	}
 	
-	
 
 }

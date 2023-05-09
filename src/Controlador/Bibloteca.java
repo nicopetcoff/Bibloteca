@@ -29,8 +29,7 @@ public class Bibloteca {
 		}
 
 	}
-	
-		
+			
 	public Libro buscarLibroPorNombre(String nombreLibro) {
 		
 		for(Autor a:autores) {
@@ -79,8 +78,4 @@ public class Bibloteca {
 		return null;
 	}
 	
-	
-	
-
-
 }

@@ -1,0 +1,30 @@
+@startuml
+actor Main
+participant Bibloteca
+Main --> Bibloteca: buscarLibroPorNombre(titulo)
+activate Bibloteca
+alt Autor Existe
+alt Tiene El Libro
+Bibloteca --> Autor: soyEseLibro(nombreLibro)
+
+activate Autor
+Autor --> Bibloteca: Libro
+
+end
+end
+
+Bibloteca --> Bibloteca: soyEseSocio(nroSocio): Socio
+note left
+  El socio ya conoce
+  su nro de socio
+end note
+
+Bibloteca--> Bibloteca: traemeEjemplares(Libro libro): Ejemplar
+
+Bibloteca --> Bibloteca: crearPrestamo(Libro libro, Socio socio, int fechaRetiro, int fechaDevolucion)
+
+Bibloteca --> Autor: AgregarPrestamos(new Prestamo(socio, e, fechaRetiro, fechaDevolucion))
+
+deactivate Autor
+deactivate Bibloteca
+@enduml

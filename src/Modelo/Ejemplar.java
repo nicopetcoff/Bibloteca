@@ -24,6 +24,7 @@ public class Ejemplar {
 	public boolean enUso() {
 		return enUso;
 	}
+	
 	public void cambiarALibre() {
 		this.enUso= false;
 	}

@@ -1,0 +1,105 @@
+@startuml
+class Bibloteca{
+
+-autores: ArrayList<Autor>
+-socios: ArrayList<Socio>
++Bibloteca()
++void buscarLibroPorAutor(String nombreAutor)
++Libro buscarLibroPorNombre(String nombreLibro)
++void crearPrestamo(Libro libro, Socio socio, int fechaRetiro, int fechaDevolucion)
++Ejemplar traemeEjemplares(Libro libro)
++Socio soyEseSocio(int nroSocio)
+
+}
+
+
+class Libro{
+-autor: Autor
+-fechaEdicion: date
+-nombre: String
+-idioma: Idioma
+-resenia: String
+-ejemplares: ArrayList<Ejemplar>
+
++Libro(Autor autor, int fechaEdicion, String nombre, Idioma idioma, String resenia, ArrayList<Ejemplar> ejemplares)
++String getNombre()
++Autor getAutor()
++ArrayList<Ejemplar> getEjemplares()
++void agregarEjemplar(int fechaEdicion, TipoEncuadernacion tipoEncuadernacion, Idioma idioma)
++String toString()
+
+}
+
+class Ejemplar{
+-nroEjemplar: int
+-anioEdicion: date
+-tipoEncuadernacion: TipoEncuadernacion
+-idioma: Idioma
+-enUso: boolean
++public Ejemplar(int anioEdicion, TipoEncuadernacion tipoEncuadernacion, Idioma idioma)
++boolean enUso()
++void cambiarALibre()
++void cambiarAAlquilado()
+}
+
+class Autor{
+-nombre: String
+-fechaNacimiento: date
+-estaVivo: boolean
+- libros: ArrayList<Libro>
++Autor(String nombre, int fechaNacimiento, boolean estaVivo)
++String getNombre()
++void agregarLibro(Libro libro)
++Libro soyEseLibro(String nombreLibro)
++ArrayList getLibros();
+}
+
+class Socio{
+-nombre: String
+-nroSocio: int
+-prestamos: ArrayList<Prestamos>
++Socio(String nombre, int nroSocio, ArrayList<Prestamo> prestamos)
++void AgregarPrestamos(Prestamo prestamo)
++int getNroSocio()
+}
+
+class Prestamo{
+-socio: Socio
+-fechaRetiro: date
+-fechaDevolucion: date
+-categoria: Categoria
+-demorado: boolean
++Prestamo(Socio socio, Ejemplar ejemplar, int fechaRetiro, int fechaDevolucion)
+}
+
+enum Categoria{
+2dias
+7dias
+15dias
+30dias
+}
+
+enum Idioma{
+espaniol
+ingles
+}
+
+enum Encuadernacion{
+tapaDura
+tapaBlanda
+espiral
+}
+
+Libro "1" *-- "*" Ejemplar
+Libro "*" --* "1" Autor
+
+Ejemplar -- Encuadernacion
+Ejemplar -- Idioma
+
+Ejemplar "1" -- "1" Prestamo
+Prestamo "*" --* "1" Socio
+Prestamo -- Categoria
+
+Bibloteca "1" o-- "*" Socio
+Bibloteca "1" o-- "*" Autor
+@enduml
