@@ -5,7 +5,7 @@ import Modelo.*;
 
 public class main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int opcion;
 		
@@ -26,7 +26,23 @@ public class main {
 					
 					Libro l = b.buscarLibroPorNombre(titulo);
 					
-					System.out.println();
+					System.out.println("Indique su nro de socio");
+					
+					int nroSocio= sc.nextInt();
+					
+					Socio soc = b.soyEseSocio(nroSocio);
+					
+					System.out.println("Indique fecha de retiro formato AAAAMMDD");
+					
+					int fechaRet = sc.nextInt();
+					
+					System.out.println("Indique fecha de devolucion formato AAAAMMDD");
+					
+					int fechaDev = sc.nextInt();
+					
+					b.crearPrestamo(l, soc, fechaRet, fechaDev);
+					
+					
 					
 					break;
 					

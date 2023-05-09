@@ -7,36 +7,40 @@ import Modelo.*;
 
 public class Bibloteca {
 	
-	ArrayList<Libro> libros;
+	
 	ArrayList<Autor> autores;
 	ArrayList<Socio> socios;
-	ArrayList<Prestamo> prestamos;
+	
+	
 	public Bibloteca() {
 		
-		this.libros = new ArrayList<>();
 		this.autores = new ArrayList<>();
-		this.socios = new ArrayList<>();
-		this.prestamos = new ArrayList<>();
+		this.socios = new ArrayList<>();		
 	}
 	
-	public Libro buscarLibroPorNombre(String nombrel) {
+	public void buscarLibroPorAutor(String nombreAutor) {
 		
-		for(Libro l: libros) {
-			if (l.getNombre().equals(nombrel)) {
-				return l;
+		for (Autor a: autores) {
+			if(a.getNombre().equals(nombreAutor)) {
+				for (int i = 0; i < a.getLibros().size(); i++) {
+					System.out.println(a.getLibros().get(i));
+				}
 			}
 		}
-			return null;
+
 	}
 	
-	public Libro buscarLibroPorAutor(String nombreAutor) {
 		
-		for(Libro l: libros) {
-			if (l.getAutor().getNombre().equals(nombreAutor)) {
-				return l;
+	public Libro buscarLibroPorNombre(String nombreLibro) {
+		
+		for(Autor a:autores) {
+			if (!a.soyEseLibro(nombreLibro).equals(null)) {
+				return a.soyEseLibro(nombreLibro);
 			}
 		}
-			return null;
+			
+		return null;
+		
 	}
 	
 	public void crearPrestamo(Libro libro, Socio socio, int fechaRetiro, int fechaDevolucion) throws Exception {		
@@ -47,7 +51,7 @@ public class Bibloteca {
 			throw new Exception("No hay Ejemplares de ese Libro");
 		}
 		
-		prestamos.add(new Prestamo(socio, e, fechaRetiro, fechaDevolucion));	
+		socio.AgregarPrestamos(new Prestamo(socio, e, fechaRetiro, fechaDevolucion));	
 		
 		
 	}
@@ -64,6 +68,18 @@ public class Bibloteca {
 		
 		return null;		
 	}
+	
+	public Socio soyEseSocio(int nroSocio) {
+		for (Socio s: socios) {
+			if(s.getNroSocio() == nroSocio) {
+				return s;
+			}
+			
+		}
+		return null;
+	}
+	
+	
 	
 
 

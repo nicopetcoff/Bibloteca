@@ -43,4 +43,12 @@ public class Libro {
 	ejemplares.add(ej);
 	}
 
+	@Override
+	public String toString() {
+		return "Libro [autor=" + autor + ", fechaEdicion=" + fechaEdicion + ", nombreLibro=" + nombre + ", idioma=" + idioma
+				+ ", resenia=" + resenia + ", ejemplares=" + ejemplares + "]";
+	}
+	
+	
+
 }
